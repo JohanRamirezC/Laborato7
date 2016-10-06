@@ -4,8 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EntradaForoMapper">
-	
+   <!-- RESULT MAP --> 
     
+    <resultMap type='Maestro' id='MaestroResult'>
+        <id property='propiedad1' column='COLUMNA1'/>
+        <result property='propiedad2' column='COLUMNA2'/>
+        <result property='propiedad3' column='COLUMNA3'/>  
+        <collection property='propiedad4' ofType='DetalleUno'></collection>
+        <association property="propiedad5" javaType="DetalleDos"></association>      
+    </resultMap>
+
+    <resultMap type='DetalleUno' id='DetalleResult'>
+        <id property='propiedadx' column='COLUMNAX'/>
+        <result property='propiedady' column='COLUMNAY'/>
+        <result property='propiedadz' column='COLUMNAZ'/> 
+        <association property="propiedadw" javaType="DetalleDos"></association>      
+    </resultMap>
+
+    <resultMap type='DetalleDos' id='DetalleResult'>
+        <id property='propiedadr' column='COLUMNAR'/>
+        <result property='propiedads' column='COLUMNAS'/>
+        <result property='propiedadt' column='COLUMNAT'/>        
+    </resultMap>
+    
+    <resultMap type ="Entrada_Foro" id="EntradaForoResult">
+        <id property='id' column='id'/>
+        <result property='fecha_hora' column = 'fecha_hora'/>
+        <result property = 'contenido' column = 'contenido' prefij='en'/>
+        
+    </resultMap>
+    
+    <!-- SENTENCIAS --> 
+    
+    <select id="getEntradasForo" resultMap="EntradaForoResult">
+        select ef.id, ef.fecha_hora, ef.contenido as en_contenido, cm.id as id, cm.fecha_hora as fecha_hora, cm.contenido as comen_contenido, autor.nombre as comen_nombre, autor.email as comen_email, autorcom.nombre as usu_nombre,  autorcom.email as usu_email
+        from ENTRADAS_FOROS as ef 
+        INNER JOIN COMENTARIOS as cm ON ef.`id` = cm.`ENTRADAS_FOROS_id` 
+        INNER JOIN USUARIOS as autor ON autor.email=ef.USUARIOS_email
+        INNER JOIN USUARIOS as autorcom ON autorcom.email=cm.USUARIOS_emailil
+    </select>
     
   	
 </mapper>
