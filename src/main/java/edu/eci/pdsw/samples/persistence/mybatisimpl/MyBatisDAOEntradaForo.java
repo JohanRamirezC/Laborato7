@@ -22,6 +22,7 @@ import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.DaoEntradaForo;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EntradaForoMapper;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
@@ -31,10 +32,10 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class MyBatisDAOEntradaForo implements DaoEntradaForo{
 
-    private SqlSession currentSession=null;
+    private EntradaForoMapper currentSession=null;
 
     public MyBatisDAOEntradaForo(SqlSession session) {
-        this.currentSession=session;
+        this.currentSession=session.getMapper(EntradaForoMapper.class);
     }
         
     @Override
@@ -44,7 +45,7 @@ public class MyBatisDAOEntradaForo implements DaoEntradaForo{
 
     @Override
     public List<EntradaForo> loadAll() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (ArrayList<EntradaForo>) currentSession.getEntradasForo();
     }
 
     @Override
