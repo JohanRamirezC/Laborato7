@@ -13,19 +13,19 @@
     </resultMap>
     
     <resultMap type ="Comentario" id="ComentarioResult">
-        <id property='id' column='id'/>
-        <result property='fecha_hora' column = 'fecha_hora'/>
+        <!--<id property='id' column='id'/>-->
+        <result property='fechayHora' column = 'fecha_hora'/>
         <result property = 'contenido' column = 'contenido' />
-        <association property="usuario_email" javaType="usuario" resultMap='UsuariosResult' columnPrefix='ucm_'></association>
+        <association property="autor" javaType="usuario" resultMap='UsuariosResult' columnPrefix='ucm_'></association>
         
     </resultMap>
     
     <resultMap type ="EntradaForo" id="EntradaForoResult">
-        <id property='id' column='id'/>
-        <result property='fecha_hora' column = 'fecha_hora'/>
-        <result property = 'contenido' column = 'contenido' />
-        <association property="usuario_email" javaType="usuario" resultMap='UsuariosResult' columnPrefix='ef_'></association>
-        <collection property='Comentarios' ofType='Comentario' resultMap='ComentarioResult' columnPrefix='cm_'/>
+        <id property='identificador' column='id'/>
+        <result property='fechayHora' column = 'fecha_hora'/>
+        <result property = 'comentario' column = 'contenido' />
+        <association property="autor" javaType="usuario" resultMap='UsuariosResult' columnPrefix='ef_'></association>
+        <collection property='respuestas' ofType='Comentario' resultMap='ComentarioResult' columnPrefix='cm_'/>
     </resultMap>
     
     <!-- SENTENCIAS --> 
@@ -34,7 +34,7 @@
         select ef.id as id, ef.fecha_hora as fecha_hora , ef.contenido as contenido,
         cm.id as cm_id, cm.fecha_hora as cm_fecha_hora, cm.contenido as cm_contenido, 
         autor.nombre as ef_nombre, autor.email as ef_email,
-        autorcom.nombre as cm_nombre,  autorcom.email as cm_email
+        autorcom.nombre as cm_ucm_nombre,  autorcom.email as cm_ucm_email
         from ENTRADAS_FOROS as ef 
         INNER JOIN COMENTARIOS as cm ON ef.`id` = cm.`ENTRADAS_FOROS_id` 
         INNER JOIN USUARIOS as autor ON autor.email=ef.USUARIOS_email

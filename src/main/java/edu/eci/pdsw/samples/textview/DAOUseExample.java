@@ -16,11 +16,20 @@
  */
 package edu.eci.pdsw.samples.textview;
 
+import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.persistence.DaoEntradaForo;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
+import edu.eci.pdsw.samples.persistence.DaoUsuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EntradaForoMapper;
+import static edu.eci.pdsw.samples.textview.MyBatisExample.getSqlSessionFactory;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.*;
 import java.util.Properties;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 /**
  *
@@ -36,10 +45,20 @@ public class DAOUseExample {
         
         daof.beginSession();
         
+        
+        DaoEntradaForo daoUsuario = daof.getDaoEntradaForo();
+        SqlSessionFactory sessionfact = getSqlSessionFactory();
+        SqlSession sqlss = sessionfact.openSession();
+        
+        List<EntradaForo>  pedmp= daoUsuario.loadAll();
+        for(int i = 0; i < pedmp.size(); i++){
+            System.out.println(pedmp.get(i).getAutor().getNombre());
+        }
+        
         /**
          * OPERACIONES CON LOS DAO
          */
-        System.out.println(daof.getDaoEntradaForo().loadAll());
+        //System.out.println(daof.getDaoEntradaForo().loadAll());
         
         
         daof.commitTransaction();
