@@ -51,16 +51,21 @@ public class DAOUseExample {
         DaoUsuario daoUsuario = daof.getDaoUsuario();
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
-        
+        /**
         List<EntradaForo>  pedmp= daoForo.loadAll();
         for(int i = 0; i < pedmp.size(); i++){
             System.out.println(pedmp.get(i).getAutor().getNombre());
         }
+        **/
+        EntradaForo pedmp= daoForo.load(2);
+      
+        System.out.println(pedmp.getAutor().getNombre());
+        /**
         daoUsuario.save(new Usuario("ElPaspi@gmail.com","Pipe Losada"));
         
         System.out.println(daoUsuario.load("ElPaspi@gmail.com").getNombre());
         System.out.println(daoUsuario.load("ElPaspi@gmail.com").getEmail());
-        
+        **/
         
         /**
          * OPERACIONES CON LOS DAO
