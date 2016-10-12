@@ -52,6 +52,7 @@ public class JDBCDaoUsuario implements DaoUsuario {
         }*/
         throw new RuntimeException("No se ha implementado el metodo 'load' del DAOUsuarioJDBC");
     }
+    
 
     @Override
     public void save(Usuario u) throws PersistenceException {

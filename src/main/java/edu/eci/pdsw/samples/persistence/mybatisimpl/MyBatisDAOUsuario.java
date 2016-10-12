@@ -19,6 +19,7 @@ package edu.eci.pdsw.samples.persistence.mybatisimpl;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.DaoUsuario;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.UsuarioMapper;
 import org.apache.ibatis.session.SqlSession;
 
 /**
@@ -28,17 +29,17 @@ import org.apache.ibatis.session.SqlSession;
 public class MyBatisDAOUsuario implements DaoUsuario{
 
     
-    private SqlSession currentSession=null;
+    private UsuarioMapper currentSession=null;
 
     public MyBatisDAOUsuario(SqlSession session) {
-        this.currentSession=session;
+        this.currentSession=session.getMapper(UsuarioMapper.class);
     }
     
     
     
     @Override
     public Usuario load(String email) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return currentSession.getUsuario(email);
     }
 
     @Override

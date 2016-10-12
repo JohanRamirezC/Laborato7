@@ -4,5 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.UsuarioMapper">
-	                   	
+    
+	<resultMap type ="Usuario" id="UsuariosResult">
+            <id property='email' column='email'/>
+            <result property='nombre' column = 'nombre'/>
+        </resultMap>         
+        
+        <resultMap type ="EntradaForo" id="EntradaForoResult">
+            <id property='identificador' column='id'/>
+            <result property='fechayHora' column = 'fecha_hora'/>
+            <result property = 'comentario' column = 'contenido' />
+            <association property="autor" javaType="usuario" resultMap='UsuariosResult' columnPrefix='ef_'></association>
+            <!--<collection property='respuestas' ofType='Comentario' resultMap='ComentarioResult' columnPrefix='cm_'/>-->
+        </resultMap>          	
+        
+        <select id="getUsuario" resultMap="UsuarioResult">
+            select nombre, email from Usuario LEFT JOIN EntradaForo on USUARIOS_email = email
+            where email=#{emailusuario}
+        </select>
+        
+        <insert>
+            
+        </insert>
 </mapper>
