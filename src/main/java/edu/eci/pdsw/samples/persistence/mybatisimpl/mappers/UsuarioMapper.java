@@ -27,6 +27,6 @@ public interface UsuarioMapper {
     
     public Usuario getUsuario(@Param("emailusuario") String email); 
     
-    public void insertarUsuario(@Param ("emailusuario")String email,@Param ("nombreusuario") String nombre);
+    public void insertUsuario(@Param ("emailusuario")String email,@Param ("nombreusuario") String nombre);
 
 }

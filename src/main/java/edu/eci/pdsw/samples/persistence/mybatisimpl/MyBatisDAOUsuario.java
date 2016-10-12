@@ -44,7 +44,7 @@ public class MyBatisDAOUsuario implements DaoUsuario{
 
     @Override
     public void save(Usuario p) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        currentSession.insertUsuario(p.getEmail(), p.getNombre());
     }
 
     @Override

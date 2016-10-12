@@ -17,6 +17,7 @@
 package edu.eci.pdsw.samples.textview;
 
 import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.persistence.DaoEntradaForo;
 import edu.eci.pdsw.samples.persistence.DaoFactory;
 import edu.eci.pdsw.samples.persistence.DaoUsuario;
@@ -55,8 +56,12 @@ public class DAOUseExample {
         for(int i = 0; i < pedmp.size(); i++){
             System.out.println(pedmp.get(i).getAutor().getNombre());
         }
-        System.out.println(daoUsuario.load("juan.perez@gmail.com").getNombre());
-        System.out.println(daoUsuario.load("juan.perez@gmail.com").getEmail());
+        daoUsuario.save(new Usuario("ElPaspi@gmail.com","Pipe Losada"));
+        
+        System.out.println(daoUsuario.load("ElPaspi@gmail.com").getNombre());
+        System.out.println(daoUsuario.load("ElPaspi@gmail.com").getEmail());
+        
+        
         /**
          * OPERACIONES CON LOS DAO
          */
