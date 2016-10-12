@@ -46,15 +46,17 @@ public class DAOUseExample {
         daof.beginSession();
         
         
-        DaoEntradaForo daoUsuario = daof.getDaoEntradaForo();
+        DaoEntradaForo daoForo = daof.getDaoEntradaForo();
+        DaoUsuario daoUsuario = daof.getDaoUsuario();
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         
-        List<EntradaForo>  pedmp= daoUsuario.loadAll();
+        List<EntradaForo>  pedmp= daoForo.loadAll();
         for(int i = 0; i < pedmp.size(); i++){
             System.out.println(pedmp.get(i).getAutor().getNombre());
         }
-        
+        System.out.println(daoUsuario.load("juan.perez@gmail.com").getNombre());
+        System.out.println(daoUsuario.load("juan.perez@gmail.com").getEmail());
         /**
          * OPERACIONES CON LOS DAO
          */

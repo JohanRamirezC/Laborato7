@@ -18,12 +18,12 @@
             <!--<collection property='respuestas' ofType='Comentario' resultMap='ComentarioResult' columnPrefix='cm_'/>-->
         </resultMap>          	
         
-        <select id="getUsuario" resultMap="UsuarioResult">
-            select nombre, email from Usuario LEFT JOIN EntradaForo on USUARIOS_email = email
+        <select id="getUsuario" resultMap="UsuariosResult">
+            select nombre, email from USUARIOS LEFT JOIN ENTRADAS_FOROS on USUARIOS_email = email
             where email=#{emailusuario}
         </select>
-        
+        <!--
         <insert id="insertUsuario" paramtype="map">
             insert into Usuario values(#{Usuario.email},#{Usuario.nombre})
-        </insert>
+        </insert>-->
 </mapper>
