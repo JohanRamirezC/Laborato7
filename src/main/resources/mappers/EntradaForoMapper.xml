@@ -41,5 +41,7 @@
         INNER JOIN USUARIOS as autorcom ON autorcom.email=cm.USUARIOS_email
     </select>
     
-  	
+    <insert id = "agregarComentarioAEntradaForo" parameterType="map">
+        insert into ENTRADAS_FOROS values(#{idForo},#{})
+    </insert>
 </mapper>
