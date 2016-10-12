@@ -23,7 +23,7 @@
             where email=#{emailusuario}
         </select>
         
-        <insert>
-            
+        <insert id="insertUsuario" paramtype="map">
+            insert into Usuario values(#{Usuario.email},#{Usuario.nombre})
         </insert>
 </mapper>
