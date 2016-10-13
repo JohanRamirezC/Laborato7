@@ -2,6 +2,9 @@
 ###Procesos de desarrollo de Software - PDSW
 ####Tecnologías de persistencia - Frameworks de Persistencia - Introducción a MyBatis
 
+####Realizado por
+####Hernán Felipe Losada (Chuzz1996)
+####Johan Ramirez(JohanRamirezC)
 
 En este laboratorio, se realizará el mismo ejercicio desarrollado semanas atrás con JDBC 'plano', pero esta vez haciendo uso de un 'framework' de persistencia.
 
